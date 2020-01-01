@@ -8,6 +8,7 @@ int main(){
 	cin>>n;
 	int no;
 	int ans=0;
+	//BITWISE XOR OPERATOR
 	for(int i=0;i<n;i++){
 		cin>>no;
 		ans=ans^no;
