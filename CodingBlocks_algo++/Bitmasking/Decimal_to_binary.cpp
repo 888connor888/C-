@@ -15,6 +15,6 @@ int decimal_ToBinary(int n){
 int main(){
 	int n;
 	cin>>n;
-    cout<<"The Binary Format of the number is:"<<decimal_ToBinary(n)<<endl;
+    cout<<"The Binary Format of the number is:"<<decimal_ToBinary(n)<<endl; 
 	return 0;
 }
