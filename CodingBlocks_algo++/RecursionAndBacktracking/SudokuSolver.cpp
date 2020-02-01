@@ -14,7 +14,7 @@ bool canPlace(int mat[][9],int i,int j,int n,int number){
     int rn= sqrt(n);
     int sx=(i/rn)*rn;
     int sy=(j/rn)*rn;
-    for(int x=sx;x<sx+rn;x++){ // sx + rn is the langth of the sub-grid.
+    for(int x=sx;x<sx+rn;x++){ // sx + rn is the length of the sub-grid.
     	for(int y=sy;y<sy+rn;y++){
     		if(mat[x][y]==number){
     			return false;
@@ -26,7 +26,7 @@ bool canPlace(int mat[][9],int i,int j,int n,int number){
     return true;
 }
 
-bool solvesudoku(int mat[][9],int i,int j,int n){
+bool solvesudoku(int mat[][9],int i,int j,int n){ 
 	// Base Case
 	if(i==n){
 		// Print the Matrix
