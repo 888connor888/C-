@@ -21,7 +21,8 @@ public:
         strcpy(name,n);
         
     }
-    Car(Car &X){
+    // This is a copy constructor
+    Car(Car &X){ // The address is passed 
         cout<<"Making a Copy of Car";
         price = X.price;
         model_no = X.model_no;
