@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+
 int binarySearch(int arr[],int n,int Key){
 	int s=0,e=n-1;
 	int mid;
@@ -31,9 +32,10 @@ int main(){
 	cin>>Key;
 	int searchIndex=binarySearch(arr,n,Key);
 	if(searchIndex==-1){
-		cout<<Key<<" is not present!"<<endl;
+		cout<<-1<<endl;
 	}
 	else{
-		cout<<" The index of the element is:"<<searchIndex<<endl;
+		cout<<searchIndex<<endl;
 	}
+	return 0;
 }
