@@ -1,88 +1,93 @@
 #include<iostream>
 using namespace std;
 
-class node{
+class node {
 public:
 	int data;
 	node* next;
-	node(const int d):next(NULL){
+	node(const int d): next(NULL) {
 		data = d;
 	}
 };
 
-void insertAtTail(node*&head,int data){
-	if(head == NULL){
+void insertAtTail(node*&head, int data) {
+	if (head == NULL) {
 		head = new node(data);
 		return;
 	}
 	node*temp = head;
-	while(temp->next != NULL){
+	while (temp->next != NULL) {
 		temp = temp->next;
 	}
 	node*n = new node(data);
 	temp->next = n;
 }
 
-void buildList(node*&head){
+void buildList(node*&head) {
 	int data;
-	cin>>data;
-	while(data != -1){
-		insertAtTail(head,data);
-		cin>>data;
+	cin >> data;
+	while (data != -1) {
+		insertAtTail(head, data);
+		cin >> data;
 	}
 }
 
-void Print(node*head){
-	while(head!=NULL){
-		cout<<head->data<<" ";
+void Print(node*head) {
+	while (head != NULL) {
+		cout << head->data << " ";
 		head = head->next;
 	}
-	cout<<endl;
+	cout << endl;
 	return;
 }
 
-istream& operator >> (istream &is,node* &head){
+istream& operator >> (istream &is, node* &head) {
 	buildList(head);
 	return is;
 }
 
-ostream& operator << (ostream &is,node* head){
+ostream& operator << (ostream &is, node* head) {
 	Print(head);
 	return is;
 }
 
-int length(node*head){
-	if(head == NULL) return 0;
+int length(node*head) {
+	if (head == NULL) return 0;
 	int jump = 0;
-	while(head != NULL){
+	while (head != NULL) {
 		head = head->next;
 		jump += 1;
 	}
 	return jump;
 }
 
-node* KthNode_from_last(node*head,int k){
-	if(k>length(head)) return NULL;
+node* KthNode_from_last(node*head, int k) {
+	if (k > length(head)) return NULL;
 	node*fast = head;
 	node*slow = head;
 	int jump = 1;
-	while(jump<=k){
+	while (jump <= k) {
 		fast = fast->next;
 		jump += 1;
 	}
-	while(fast != NULL ){
+	while (fast != NULL ) {
 		fast = fast->next;
 		slow = slow->next;
 	}
 	return slow;
 }
 
-int main(){
+int main() {
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt", "r", stdin);
+	freopen("Output.txt", "w", stdout);
+#endif
 	node*head = NULL;
 	int k;
-	cin>>head;
-	cin>>k;
-	cout<<head;
-	cout<<KthNode_from_last(head,k)->data<<endl;
+	cin >> head;
+	cin >> k;
+	cout << head;
+	cout << KthNode_from_last(head, k)->data << endl;
 	return 0;
 }
+

@@ -107,10 +107,14 @@ node* MergeSort(node*head){
 }
 
 int main(){
+	#ifndef ONLINE_JUDGE
+	    freopen("Input.txt","r",stdin);
+        freopen("Output.txt","w",stdout);
+    #endif
 	node*head = NULL;
-	cin>>head;
+	cin>>head;  
 	cout<<head;
-	MergeSort(head);
-	cout<<head;
+	node*head1 = MergeSort(head);
+	cout<<head1;
 	return 0;
 }
