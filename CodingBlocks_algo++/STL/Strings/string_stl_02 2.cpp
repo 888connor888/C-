@@ -5,7 +5,7 @@ using namespace std;
 
 bool compare(string a,string b){
     if(a.length()==b.length()){
-        return a<b;
+        return a<b; // overloaded operator
     }
     return a.length()>b.length();
 }
@@ -13,7 +13,7 @@ bool compare(string a,string b){
 int main() {
     int n;
     cin>>n;
-    cin.get();
+    cin.get(); // to consume any extra space char if present.
 
     string s[100]; //Vector
     
