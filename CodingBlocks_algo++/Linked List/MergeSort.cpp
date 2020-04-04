@@ -80,7 +80,14 @@ node* Merge(node*a,node*b){
 
 node* midPoint(node*head){
 	if(head == NULL || head->next == NULL)    return head;
-	node*fast = head;
+   /* Correction:
+    node*fast = head;
+    Reason:
+    As you have initialized both fast and slow with head,
+    So for a linked list of two elements, it will return slow as the second node of the list.
+    causing merge() function to stuck in an infinite loop as it will break the list into 2:0 ration
+    for this returned value of mid.*/
+	node*fast = head->next;
 	node*slow = head;
 	while(fast != NULL && fast->next != NULL){
 		fast = fast->next->next;
@@ -104,6 +111,7 @@ node* MergeSort(node*head){
 	//3. Merge The two parts
 	node*c = Merge(a,b);
 	return c;
+    return head;
 }
 
 int main(){
@@ -112,7 +120,7 @@ int main(){
         freopen("Output.txt","w",stdout);
     #endif
 	node*head = NULL;
-	cin>>head;  
+	cin>>head;
 	cout<<head;
 	node*head1 = MergeSort(head);
 	cout<<head1;
