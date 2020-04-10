@@ -19,9 +19,9 @@ int main(){
 	int n;
 	cin>>n;
 	if(isPrime(n)){
-		cout<<"Prime";
+		cout<<"Yes"<<endl;;
 	}
 	else{
-		cout<<"Not Prime!";
+		cout<<"No"<<endl;;
 	}
 }

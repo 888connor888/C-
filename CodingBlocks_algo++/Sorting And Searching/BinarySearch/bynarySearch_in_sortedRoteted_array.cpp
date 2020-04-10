@@ -28,7 +28,6 @@ int searchIn(int a[],int s,int e,int Key){
 		return searchIn(a,mid+1,e,Key);
 	}
 	return searchIn(a,s,mid-1,Key);
-
 }
 
 int main(){
