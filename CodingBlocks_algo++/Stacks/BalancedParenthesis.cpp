@@ -2,28 +2,34 @@
 #include<stack>
 using namespace std;
 
-bool BalancedParenthesis(string str){
+bool checkExpression(string str) {
 	stack<char> s;
-	for(int i=0;i<str.size();i++){
-		char currentChar = str[i];
-		if(currentChar == '('){
-		   s.push(currentChar);
+	for (int i = 0; i < str.length(); i++) {
+		char x = str[i];
+		if (x == '(' or x == '{' or x == '[') {
+			s.push(x);
 		}
-		else if(currentChar == ')'){
-			if(s.empty()) return false;
+		else if (x == ')') {
+			if (s.empty() or s.top() != '(' )  return false;
+			s.pop();
+		}
+		else if (x == '}') {
+			if (s.empty() or s.top() != '{' )  return false;
+			s.pop();
+		}
+		else if (x == ']') {
+			if (s.empty() or s.top() != '[' )  return false;
 			s.pop();
 		}
 	}
 	return s.empty();
 }
 
-int main(){
-	#ifndef ONLINE_JUDGE
-	    freopen("Input.txt","r",stdin);
-        freopen("Output.txt","w",stdout);
-    #endif
-    string str;
-    cin>>str;
-    if(BalancedParenthesis(str))  cout<<"Balanced"<<endl;
-    return 0;
+int main() {
+	string str;
+	cin >> str;
+	bool x = checkExpression(str);
+	if (x) cout << "Yes" << endl;
+	else  cout << "No" << endl;
+	return 0;
 }
