@@ -71,32 +71,43 @@ private:
 		return p;
 	}
 public:
-	node* lowestCommonAncestor(node*root, const int p, const int q) {
-		node*P = findNode(root, p).second;
-		node*Q = findNode(root, q).second;
-		recurse(root, P, Q);
+	node* lowestCommonAncestor(node*root, node* p, node* q) {
+		// node*P = findNode(root, p).second;
+		// node*Q = findNode(root, q).second;
+		recurse(root, p, q);
 		return ans;
 	}
 };
 
-class DistanceofTwoNodes {
-private:
-	int findDistance(node*current, int target) {
-		if (current == NULL) return -1;
-		int dist = -1;
-		if ((current->data == target) or (dist = findDistance(current->left, target)) >= 0 or (dist = findDistance(current->right, target)) >= 0) return dist + 1;
-		return dist;
+class DistanceofTwoNodes{
+	pair<int,bool> rootDistance(node*current,node*target){
+		pair<int,bool> p;
+		if(current==NULL){
+			p.first = 0;
+			p.second = false;
+			return p;
+		}
+		if(current == target){
+			p.first = 1;
+			p.second = true;
+			return p;
+		}
+        pair<int,bool> lp = rootDistance(current->left,target);
+        pair<int,bool> rp = rootDistance(current->right,target);
+        if(lp.second == true) p = lp;
+        else if(rp.second == true) p = rp;
+        p.first++;
+		return p;
 	}
 public:
-	int Distance(node*root, int p, int q) {
+	int Distance(node*root, node*p, node*q) {
 		LowestCommonAncestor l;
 		node*lca = l.lowestCommonAncestor(root, p, q);
-		int dist_p = findDistance(root, p);
-		int dist_q = findDistance(root, q);
-		int dist_lca = findDistance(root, lca->data);
-		return (dist_p + dist_q - (2 * dist_lca));
+		pair<int,bool> dist_p = rootDistance(root, p);
+		pair<int,bool> dist_q = rootDistance(root, q);
+		pair<int,bool> dist_lca = rootDistance(root, lca);
+		return (dist_p.first + dist_q.first - (2 * dist_lca.first));
 	}
-
 };
 
 int main() {
@@ -108,6 +119,6 @@ int main() {
 	cout << "Tree:" << endl;
 	BFS(root);
 	DistanceofTwoNodes d;
-	cout << d.Distance(root, 8, 10) << endl;
+	cout << d.Distance(root, root->left->left->left,root->right->left) << endl;
 	return 0;
 }
